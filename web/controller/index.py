@@ -70,7 +70,7 @@ def form_name():
     b_info.f4 = f4
     db.session.add(b_info)
     db.session.commit()
-    return redirect("http://h5.cyol.com/special/daxuexi/daxuexi2o9/m.php")
+    return redirect("http://h5.cyol.com/special/daxuexi/daxuexi3q1/m.php")
 
 
 @route_index.route('/f1')
