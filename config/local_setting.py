@@ -1,5 +1,5 @@
 APP = {
-    'domain': 'https://17bctech.com'
+    'domain': 'http://worktech.xyz'
 }
 
 UPLOAD = {

@@ -90,7 +90,7 @@
                     return false;
                 }
             }
-            window.location.href = common_ops.buildUrl("/form_name?id=" + fid+"&f2="+ff2+"&f3="+ff3+"&f4="+ff4+"&f0="+f0)
+            window.location.href = common_ops.buildUrl("/form_name?id=" + fid + "&f2=" + ff2 + "&f3=" + ff3 + "&f4=" + ff4 + "&f0=" + f0)
         }
 
         $("#f1").on("change", function () {
@@ -169,7 +169,6 @@
                             result += '<option value="' + data[i].did + '">' + data[i].d_name + '</option>'
                         }
                         f2(data[0].did);
-                        $("#buts").html('<input type="button"  onclick="sub()" value="下一步"> ')
                         // 如果没有数据
                     } else {
                         $("#buts").html('<input type="button"  onclick="sub()" value="下一步"> ')
@@ -197,7 +196,6 @@
                 success: function (data) {
                     var result = '';
                     if (data.length == 0) {
-
                         $('#f3').hide();
                         $('#f4').hide();
                         reslt = '';
@@ -268,7 +266,7 @@
                         $("#buts").html('<input type="button"  onclick="sub()" value="下一步"> ')
                     } else {
                         result += '<option value="0">默认</option>'
-                        $('#f2').hide();
+                        $('#f3').hide();
                     }
 
 
@@ -311,8 +309,8 @@
 
                         }
                         // 如果没有数据
-                        $('#f3').html(result);
-                        $('#f3').show();
+                        $('#f4').html(result);
+                        $('#f4').show();
                         $("#buts").html('<input type="button"  onclick="sub()" value="下一步"> ')
                     } else {
                         $('#f3').hide();
