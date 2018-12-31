@@ -38,26 +38,47 @@
                 <span class="r"></span>
             </div>
             <div class="card">
-                <div class="card-body text-center">
+                <div  class="card-body text-center">
                     <div class="mb-4">
                         <i class="feather icon-unlock auth-icon"></i>
                     </div>
                     <h3 class="mb-4">登录</h3>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="text" class="form-control" placeholder="text" name="login_name">
                     </div>
                     <div class="input-group mb-4">
-                        <input type="password" class="form-control" placeholder="password">
+                        <input type="password" class="form-control" placeholder="password" name="login_pwd">
                     </div>
-                    <button class="btn btn-primary shadow-2 mb-4">登录</button>
+                    <button class="btn btn-primary shadow-2 mb-4" onclick="loginBtn()">登录</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Required Js -->
+    <script src="{{ buildStaticUrl('js/jquery.js') }}"></script>
     <script src="{{ buildStaticUrl('js/vendor-all.min.js') }}"></script>
     <script src="{{ buildStaticUrl('js/pcoded.min.js') }}"></script>
-
+    <script src="{{ buildStaticUrl('js/common.js') }}"></script>
+    <script>
+        function loginBtn() {
+        var login_name = $(".input-group input[name=login_name]").val();
+        var login_pwd = $(".input-group input[name=login_pwd]").val();
+        debugger;
+        $.ajax({
+            url: common_ops.buildUrl("/admin/login"),
+            type: 'POST',
+            data: {'name': login_name, 'pwd': login_pwd},
+            dataType: 'json',
+            success: function (res) {
+                alert(res.msg);
+                if (res.code == 200) {
+                    window.localStorage.setItem('id', res.id);
+                    window.location.href = common_ops.buildUrl("/admin/index");
+                }
+            }
+        });
+    }
+    </script>
 </body>
 </html>
