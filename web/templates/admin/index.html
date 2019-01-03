@@ -12,10 +12,10 @@
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
-    <meta name="author" content="CodedThemes" />
+    <meta name="author" content="CodedThemes"/>
 
     <!-- Favicon icon -->
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
@@ -29,39 +29,39 @@
 </head>
 
 <body>
-    <div class="auth-wrapper">
-        <div class="auth-content">
-            <div class="auth-bg">
-                <span class="r"></span>
-                <span class="r s"></span>
-                <span class="r s"></span>
-                <span class="r"></span>
-            </div>
-            <div class="card">
-                <div  class="card-body text-center">
-                    <div class="mb-4">
-                        <i class="feather icon-unlock auth-icon"></i>
-                    </div>
-                    <h3 class="mb-4">登录</h3>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="text" name="login_name">
-                    </div>
-                    <div class="input-group mb-4">
-                        <input type="password" class="form-control" placeholder="password" name="login_pwd">
-                    </div>
-                    <button class="btn btn-primary shadow-2 mb-4" onclick="loginBtn()">登录</button>
+<div class="auth-wrapper">
+    <div class="auth-content">
+        <div class="auth-bg">
+            <span class="r"></span>
+            <span class="r s"></span>
+            <span class="r s"></span>
+            <span class="r"></span>
+        </div>
+        <div class="card">
+            <div class="card-body text-center">
+                <div class="mb-4">
+                    <i class="feather icon-unlock auth-icon"></i>
                 </div>
+                <h3 class="mb-4">登录</h3>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="text" name="login_name">
+                </div>
+                <div class="input-group mb-4">
+                    <input type="password" class="form-control" placeholder="password" name="login_pwd">
+                </div>
+                <button class="btn btn-primary shadow-2 mb-4" onclick="loginBtn()">登录</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Required Js -->
-    <script src="{{ buildStaticUrl('js/jquery.js') }}"></script>
-    <script src="{{ buildStaticUrl('js/vendor-all.min.js') }}"></script>
-    <script src="{{ buildStaticUrl('js/pcoded.min.js') }}"></script>
-    <script src="{{ buildStaticUrl('js/common.js') }}"></script>
-    <script>
-        function loginBtn() {
+<!-- Required Js -->
+<script src="{{ buildStaticUrl('js/jquery.js') }}"></script>
+<script src="{{ buildStaticUrl('js/vendor-all.min.js') }}"></script>
+<script src="{{ buildStaticUrl('js/pcoded.min.js') }}"></script>
+<script src="{{ buildStaticUrl('js/common.js') }}"></script>
+<script>
+    function loginBtn() {
         var login_name = $(".input-group input[name=login_name]").val();
         var login_pwd = $(".input-group input[name=login_pwd]").val();
         debugger;
@@ -79,6 +79,6 @@
             }
         });
     }
-    </script>
+</script>
 </body>
 </html>

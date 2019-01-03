@@ -90,7 +90,8 @@
                     return false;
                 }
             }
-            window.location.href = common_ops.buildUrl("/form_name?id=" + fid + "&f2=" + ff2 + "&f3=" + ff3 + "&f4=" + ff4 + "&f0=" + f0)
+            openId = $("#openId").val();
+            window.location.href = common_ops.buildUrl("/form_name?id=" + fid + "&f2=" + ff2 + "&f3=" + ff3 + "&f4=" + ff4 + "&f0=" + f0 + "&openId="+openId)
         }
 
         $("#f1").on("change", function () {

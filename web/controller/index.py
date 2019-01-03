@@ -1,10 +1,10 @@
 from application import db, app
-from flask import Blueprint, request, g, jsonify , redirect
+from flask import Blueprint, request, g, jsonify, redirect
 from common.libs.WebHelper import ops_render
 from common.model.department import Department
 from common.model.profession import Profession
 from common.model.baoming import BaoMing
-import time, asyncio
+import time, asyncio, requests, json
 
 route_index = Blueprint('index_page', __name__)
 loop = asyncio.get_event_loop()
@@ -14,7 +14,16 @@ loop = asyncio.get_event_loop()
 @route_index.route('/index')
 def index():
     resp = {}
+    req = request.values
+    code = req['code'] if 'code' in req else ''
+    state = req['state'] if 'state' in req else ''
     resp['info'] = Profession.query.order_by(Profession.pid.desc()).first()
+
+    url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid={0}&secret={1}&code={2}&grant_type=authorization_code'.format(
+        'wx6950865320663956', '336da1d2a1f11447b057311f24655413', code)
+    r = requests.get(url)
+    value = json.loads(r.text)
+    resp['openId'] = value['openid']
     return ops_render('index.html', resp)
 
 
@@ -23,6 +32,7 @@ def index_next():
     resp = {}
     req = request.values
     id = req['id'] if 'id' in req else 0
+    openId = req['openId'] if 'openId' in req else 0
 
     resp['profession'] = Profession.query.order_by(Profession.pid.desc()).first()
     info = Department.query.filter_by(did=id).first()
@@ -30,6 +40,7 @@ def index_next():
 
     resp['list'] = list
     resp['info'] = info
+    resp['openId'] = openId
     return ops_render('index_next.html', resp)
 
 
@@ -38,11 +49,13 @@ def form_name():
     resp = {}
     req = request.values
     id = req['id'] if 'id' in req else -1
+    openId = req['openId'] if 'openId' in req else 0
     pro = Profession.query.order_by(Profession.pid.desc()).first()
     if request.method == 'GET':
         info = Department.query.filter_by(did=id).first()
         resp['profession'] = pro
         resp['info'] = info
+        resp['openId'] = openId
         resp['data'] = {
             'id': req['id'] if 'id' in req else -1,
             'f2': req['f2'] if 'f2' in req else -1,
@@ -57,9 +70,12 @@ def form_name():
     f3 = req['f3'] if 'f3' in req else -1
     f4 = req['f4'] if 'f4' in req else -1
     f0 = req['f0'] if 'f0' in req else -1
+    openId = req['openIds'] if 'openIds' in req else -1
     sid = pro.pid
     name = req['x_name'] if 'x_name' in req else -1
-
+    hei = BaoMing.query.filter_by(openid=openId).first()
+    if hei:
+        return redirect("http://h5.cyol.com/special/daxuexi/daxuexi3w2/m.php")
     b_info = BaoMing()
     b_info.sid = sid
     b_info.name = name
@@ -68,6 +84,7 @@ def form_name():
     b_info.f2 = f2
     b_info.f3 = f3
     b_info.f4 = f4
+    b_info.openid = openId
     db.session.add(b_info)
     db.session.commit()
     info = Department.query.filter_by(did=f0).first()

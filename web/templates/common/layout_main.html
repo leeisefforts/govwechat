@@ -8,7 +8,9 @@
     <link href="{{ buildStaticUrl('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
+<input type="hidden" id="openId" name="openId" value="{{ openId }}">
 {% block content %}
+
 {% endblock %}
 <div id='wx_pic' style='margin:0 auto;display:none;'>
     <!--<img src="{$imgUrl}" />-->

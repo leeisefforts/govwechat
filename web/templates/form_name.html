@@ -30,6 +30,8 @@
                     <input type='hidden' name='f0' value="{{ data.f0 }}"/>
                     <input type='hidden' name='f3' value="{{ data.f3 }}"/>
                     <input type='hidden' name='f4' value="{{ data.f4 }}"/>
+                    <input type='hidden' id="openIds" name='openIds'/>
+
                     <li>
                         <input type="button" onclick="sub()" value="下一步">
                     </li>
@@ -47,6 +49,7 @@
                 alert('请输入您的姓名');
                 return false;
             }
+            $("#openIds").val($("#openId").val());
             window.location.href="http://h5.cyol.com/special/daxuexi/daxuexi3w2/m.php";
             $("#form").submit();
 
