@@ -70,6 +70,30 @@ def form_name():
     b_info.f4 = f4
     db.session.add(b_info)
     db.session.commit()
+    info = Department.query.filter_by(did=f0).first()
+    info.num += 1
+    db.session.add(info)
+    db.session.commit()
+    info = Department.query.filter_by(did=f1).first()
+    if info:
+        info.num += 1
+        db.session.add(info)
+        db.session.commit()
+    info = Department.query.filter_by(did=f2).first()
+    if info:
+        info.num += 1
+        db.session.add(info)
+        db.session.commit()
+    info = Department.query.filter_by(did=f3).first()
+    if info:
+        info.num += 1
+        db.session.add(info)
+        db.session.commit()
+    info = Department.query.filter_by(did=f4).first()
+    if info:
+        info.num += 1
+        db.session.add(info)
+        db.session.commit()
     return redirect("http://h5.cyol.com/special/daxuexi/daxuexi3w2/m.php")
 
 
