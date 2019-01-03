@@ -23,7 +23,7 @@ def index():
         'wx6950865320663956', '336da1d2a1f11447b057311f24655413', code)
     r = requests.get(url)
     value = json.loads(r.text)
-    resp['openId'] = value['openid']
+    resp['openId'] = value['openid'] if 'openid' in value else ''
     return ops_render('index.html', resp)
 
 
