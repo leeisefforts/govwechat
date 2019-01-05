@@ -11,5 +11,5 @@ class Department(db.Model):
     fid = db.Column(Integer, nullable=False, server_default=FetchedValue())
     flg = db.Column(Integer, nullable=False, server_default=FetchedValue())
     num = db.Column(Integer, nullable=False, server_default=FetchedValue())
-    joinnum = db.Column(String(128), nullable=False, server_default=FetchedValue())
-    joinpercent = db.Column(String(128), nullable=False, server_default=FetchedValue())
+    joinnum = db.Column(Integer, nullable=False, server_default=FetchedValue())
+    joinpercent = db.Column(Integer, nullable=False, server_default=FetchedValue())
