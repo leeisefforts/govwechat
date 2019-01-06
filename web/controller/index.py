@@ -75,7 +75,7 @@ def form_name():
     name = req['x_name'] if 'x_name' in req else -1
     hei = BaoMing.query.filter_by(openid=openId).first()
     if hei:
-        return redirect("http://h5.cyol.com/special/daxuexi/daxuexi3w2/m.php")
+        return redirect(pro.url)
     b_info = BaoMing()
     b_info.sid = sid
     b_info.name = name
@@ -111,7 +111,7 @@ def form_name():
         info.num += 1
         db.session.add(info)
         db.session.commit()
-    return redirect("http://h5.cyol.com/special/daxuexi/daxuexi3w2/m.php")
+    return redirect(pro.url)
 
 
 @route_index.route('/f1')
