@@ -28,14 +28,14 @@
  wx.config({
      debug: false,
      appId: "wx6950865320663956",
-     timestamp: '{$timestamp}',
-     nonceStr: '{$wxnonceStr}',
-     signature: '{$wxSha1}',
+     timestamp: '{{ share.timestamp }}',
+     nonceStr: '{{ share.noncestr }}',
+     signature: '{{ share.signature }}',
      jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 功能列表，我们要使用JS-SDK的什么功能
  });
  wx.ready(function(){
-     var imgURL = 'mages/datiewm.png';
-     var link = 'http://api.vaststrong.com/?code=061nKxCV1hZyFY0kKYzV13gNCV1nKxCm&state=STATE&from=singlemessage&isappinstalled=0';
+     var imgURL = 'http://api.vaststrong.com/static/images/dati1.png';
+     var link = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6950865320663956&redirect_uri=http://api.vaststrong.com&response_type=code&scope=snsapi_userinfo&state=STATE';
      var desc = '学习新思想，争做新青年';
      var title = '我正在参加黑龙江省“青年大学习”，你也快来参加吧！';
 

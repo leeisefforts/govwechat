@@ -4,11 +4,13 @@ from common.libs.WebHelper import ops_render
 from common.model.department import Department
 from common.model.profession import Profession
 from common.model.baoming import BaoMing
+from common.libs.WechatService import WeChatService
 import time, asyncio, requests, json
 
 route_index = Blueprint('index_page', __name__)
 loop = asyncio.get_event_loop()
 
+wechat = WeChatService()
 
 @route_index.route('/')
 @route_index.route('/index')
@@ -24,6 +26,7 @@ def index():
     r = requests.get(url)
     value = json.loads(r.text)
     resp['openId'] = value['openid'] if 'openid' in value else ''
+    resp['share'] = wechat.getShareData()
     return ops_render('index.html', resp)
 
 
@@ -41,12 +44,14 @@ def index_next():
     resp['list'] = list
     resp['info'] = info
     resp['openId'] = openId
+    resp['share'] = wechat.getShareData()
     return ops_render('index_next.html', resp)
 
 
 @route_index.route('/form_name', methods=['GET', 'POST'])
 def form_name():
     resp = {}
+    resp['share'] = wechat.getShareData()
     req = request.values
     id = req['id'] if 'id' in req else -1
     openId = req['openId'] if 'openId' in req else 0
@@ -121,6 +126,7 @@ def f1():
 
     list = Department.query.filter_by(fid=id).all()
     resp = {}
+    resp['share'] = wechat.getShareData()
     resp['list'] = list
     tmp_data = []
     for item in list:
