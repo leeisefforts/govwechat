@@ -31,7 +31,7 @@
         timestamp: '{{ share.timestamp }}',
         nonceStr: '{{ share.noncestr }}',
         signature: '{{ share.signature }}',
-        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'updateAppMessageShareData', 'updateTimelineShareData'] // 功能列表，我们要使用JS-SDK的什么功能
+        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'] // 功能列表，我们要使用JS-SDK的什么功能
     });
     wx.ready(function () {
         var imgURL = 'http://api.vaststrong.com/static/images/dati1.png';
@@ -53,21 +53,5 @@
             imgUrl: imgURL, // 分享图标
             type: 'link', // 分享类型,music、video或link，不填默认为link
         });
-
-        // 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
-        wx.updateTimelineShareData({
-            title: title, // 分享标题
-            link: link,
-            imgUrl: imgURL // 分享图标
-        });
-        // 获取“分享给朋友”按钮点击状态及自定义分享内容接口
-        wx.updateAppMessageShareData({
-            title: title, // 分享标题
-            desc: desc, // 分享描述
-            link: link,
-            imgUrl: imgURL, // 分享图标
-            type: 'link', // 分享类型,music、video或link，不填默认为link
-        });
-
     });
 </script>
