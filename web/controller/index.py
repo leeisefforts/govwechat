@@ -142,12 +142,8 @@ def f1():
     return jsonify(tmp_data)
 
 
-@route_index.route('/test')
-def test():
-    loop.run_until_complete(SignUp())
-    return '报名成功1234'
+@route_index.route('/sharetor')
+def sharetor():
+    return redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6950865320663956&redirect_uri=http://api.vaststrong.com&response_type=code&scope=snsapi_userinfo&state=STATE')
 
 
-async def SignUp():
-    time.sleep(5)
-    print('Hello World:%s' % time.time())
