@@ -1,14 +1,13 @@
-from application import db, app
-from flask import Blueprint, request, g, jsonify, redirect
+from application import db
+from flask import Blueprint, request, jsonify, redirect
 from common.libs.WebHelper import ops_render
 from common.model.department import Department
 from common.model.profession import Profession
 from common.model.baoming import BaoMing
 from common.libs.WechatService import WeChatService
-import time, asyncio, requests, json
+import  requests, json
 
 route_index = Blueprint('index_page', __name__)
-loop = asyncio.get_event_loop()
 
 wechat = WeChatService()
 
