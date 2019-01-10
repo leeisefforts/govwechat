@@ -5,7 +5,8 @@ from common.model.department import Department
 from common.model.profession import Profession
 from common.model.baoming import BaoMing
 from common.libs.WechatService import WeChatService
-import  requests, json
+import requests, json
+
 
 route_index = Blueprint('index_page', __name__)
 
@@ -77,7 +78,7 @@ def form_name():
     openId = req['openIds'] if 'openIds' in req else -1
     sid = pro.pid
     name = req['x_name'] if 'x_name' in req else -1
-    hei = BaoMing.query.filter_by(openid=openId).first()
+    hei = BaoMing.query.filter_by(sid=sid).filter_by(openid=openId).first()
     if hei:
         return redirect(pro.url)
     b_info = BaoMing()
